@@ -125,13 +125,14 @@ public class Empresa{
      * Metodo para mostrar a todos los empleados de la empresa
      * @return lista
      */
-    public String mostrarEmpleados(){
-        String lista="";
-        for(Empleado e : listEmpleados){
-            lista += "Nombre: " + e.getNombre() +
-                    " | Documento: " + e.getDocumento() +
-                    " | Edad: " + e.getEdad() +
-                    " | Salario Base: " + e.getSalarioBase() + "\n";
+    public String mostrarEmpleados() {
+        String lista = "";
+
+        if (listEmpleados.isEmpty()) {
+            return "No hay empleados registrados.";
+        }
+        for (Empleado e : listEmpleados) {
+            lista += e.mostrarInformacion() + "\n";
         }
         return lista;
     }
@@ -141,13 +142,19 @@ public class Empresa{
      * Metodo para mostar el empleado que gana mas
      * @return empleado
      */
-    public Empleado empleadoMayorSalario(){
+    public Empleado empleadoMayorSalario() {
+        if (listEmpleados.isEmpty()) {
+            return null;
+        }
+
         Empleado mayor = listEmpleados.get(0);
-        for(Empleado e : listEmpleados){
-            if (e.calcularSalarioNeto()> mayor.calcularSalarioNeto()){
+
+        for (Empleado e : listEmpleados) {
+            if (e.calcularSalarioNeto() > mayor.calcularSalarioNeto()) {
                 mayor = e;
             }
         }
+
         return mayor;
     }
 

@@ -41,17 +41,17 @@ public abstract class Empleado {
 
     /**
      * Metodo para mostrar la informacion de un empleado
-     * @param empleado datos del empleado
      * @return respuesta
      */
-    public String mostrarInformacionEmpleado(Empleado empleado){
-        String respuesta="";
-        if(empleado==null){
-            respuesta="El empleado no existe";
-        } else{
-            respuesta= "El empleado con nombre:"+ empleado.getNombre()+" "+empleado.getDocumento()+ getEdad()+ getSalarioBase();
-        }
-        return respuesta;
+    public String mostrarInformacion() {
+        return "Tipo: " + this.getClass().getSimpleName() +
+                " | Nombre: " + nombre +
+                " | Documento: " + documento +
+                " | Edad: " + edad +
+                " | Salario base: " + salarioBase +
+                " | Categoría: " + categoriaEmpleado +
+                " | Descuento salud: " + descuentoSalud + "%" +
+                " | Descuento pensión: " + descuentoPension + "%";
     }
 
     /**
