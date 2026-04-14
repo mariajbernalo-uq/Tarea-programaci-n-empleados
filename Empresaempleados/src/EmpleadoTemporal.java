@@ -31,17 +31,7 @@ public class EmpleadoTemporal extends Empleado {
         return salarioBruto;
     }
 
-    /**
-     * Metodo para acalcular el salario neto de la clase empleado temporal
-     * @return salario neto
-     */
-    @Override
-    public float calcularSalarioNeto() {
-        float bruto = calcularSalarioBruto();
-        float descuentos = calcularDescuentosTotales();
-        float salarioNeto = bruto - descuentos;
-        return salarioNeto;
-    }
+
 
     // Getters
     public int getDiasTrabajados() {

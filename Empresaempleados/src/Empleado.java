@@ -55,7 +55,9 @@ public abstract class Empleado {
      * Metodo abstracto para calcular el salario neto
      * @return calcular salario neto
      */
-    public abstract float calcularSalarioNeto();
+    public float calcularSalarioNeto() {
+        return calcularSalarioBruto() - calcularDescuentosTotales();
+    }
 
     /**
      * Metodo para calcular la bonificación por categorio de los empleados

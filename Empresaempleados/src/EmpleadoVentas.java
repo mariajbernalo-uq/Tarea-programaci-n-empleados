@@ -37,21 +37,10 @@ public class EmpleadoVentas extends Empleado{
     public float calcularSalarioBruto() {
         float salarioBruto;
         float comision = calcularComisionVentas();
-        salarioBruto = salarioBase +  + comision + calcularBonificacionCategoria();
+        salarioBruto = salarioBase + comision + calcularBonificacionCategoria();
         return salarioBruto;
     }
 
-    /**
-     * Metodo para acalcular el salario neto de la clase empleado de ventas
-     * @return salarioNeto
-     */
-    @Override
-    public float calcularSalarioNeto() {
-        float bruto = calcularSalarioBruto();
-        float descuentos = calcularDescuentosTotales();
-        float salarioNeto = bruto - descuentos;
-        return salarioNeto;
-    }
 
     // Getters
     public float getTotalVentas() {

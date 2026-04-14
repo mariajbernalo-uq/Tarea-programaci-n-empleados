@@ -128,7 +128,10 @@ public class Empresa{
     public String mostrarEmpleados(){
         String lista="";
         for(Empleado e : listEmpleados){
-            lista+=e;
+            lista += "Nombre: " + e.getNombre() +
+                    " | Documento: " + e.getDocumento() +
+                    " | Edad: " + e.getEdad() +
+                    " | Salario Base: " + e.getSalarioBase() + "\n";
         }
         return lista;
     }
