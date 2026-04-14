@@ -20,8 +20,17 @@ public abstract class Empleado {
      * @param descuentoPension del empleado
      * @param categoriaEmpleado del empleado
      */
-    public Empleado(String nombre, String documento, int edad, float salarioBase,float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado){
-        this.nombre=nombre;
+    public Empleado(String nombre, String documento, int edad, float salarioBase,float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado) throws Validaciones {
+        if (salarioBase < 0) {
+            throw new Validaciones("El salario base no puede ser negativo");
+        }
+        if (descuentoSalud < 0 || descuentoSalud > 100){
+            throw new Validaciones("El porcentaje en salud debe ser entre 0 y 100");
+        }
+        if (descuentoPension < 0 || descuentoPension > 110){
+            throw new Validaciones("El porcentaje de pensión debe ser entre 0 y 100");
+        }
+        this.nombre = nombre;
         this.documento= documento;
         this.edad=edad;
         this.salarioBase=salarioBase;
