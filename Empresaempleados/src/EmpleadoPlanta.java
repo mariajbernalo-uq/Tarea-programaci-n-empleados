@@ -4,7 +4,20 @@ public class EmpleadoPlanta extends Empleado{
     private float valorHoraExtra;
     private float auxilioTransporte;
 
-    // Constructor
+    /**
+     * Metodo constructor de la clase Empleado planta
+     * @param nombre del empleado planta
+     * @param documento del empleado planta
+     * @param edad del empleado planta
+     * @param salarioBase del empleado planta
+     * @param descuentoSalud del empleado planta
+     * @param descuentoPension del empleado planta
+     * @param categoriaEmpleado del empleado planta
+     * @param cargo del empleado planta
+     * @param horasExtras del empleado planta
+     * @param valorHoraExtra del empleado planta
+     * @param auxilioTransporte del empleado planta
+     */
     public EmpleadoPlanta(String nombre, String documento, int edad, float salarioBase,float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado, String cargo, int horasExtras, float valorHoraExtra, float auxilioTransporte) {
         super(nombre,documento, edad, salarioBase, descuentoSalud, descuentoPension, categoriaEmpleado);
         this.cargo = cargo;
@@ -13,20 +26,30 @@ public class EmpleadoPlanta extends Empleado{
         this.auxilioTransporte = auxilioTransporte;
     }
 
-    // Salario Bruto
+    /**
+     * Metodo para acalcular el salario bruto de la clase empleado planta
+     * @return salarioBruto
+     */
     @Override
     public float calcularSalarioBruto() {
-        float salarioBruto= (salarioBase-descuentoSalud)-(descuentoPension);
+        float salarioBruto;
+        salarioBruto = salarioBase + auxilioTransporte + calcularBonificacionCategoria() + (horasExtras * valorHoraExtra);
         return salarioBruto;
     }
-    // Salario Neto
+
+    /**
+     * Metodo para acalcular el salario neto de la clase empleado planta
+     * @return salario neto
+     */
     @Override
     public float calcularSalarioNeto() {
         float bruto = calcularSalarioBruto();
-        return (bruto + valorHoraExtra) * horasExtras;
+        float descuentos = calcularDescuentosTotales();
+        float salarioNeto = bruto - descuentos;
+        return salarioNeto;
     }
 
-    // Getters
+    //Getters
     public String getCargo() {
         return cargo;
     }

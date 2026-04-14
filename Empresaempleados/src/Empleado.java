@@ -33,7 +33,30 @@ public abstract class Empleado {
 
     public abstract float calcularSalarioNeto();
 
-    public abstract float calcularBonificacionCategoria();
+    public float calcularBonificacionCategoria() {
+        float bonificacion = 0;
+        if (categoriaEmpleado == CategoriaEmpleado.JUNIOR) {
+            bonificacion = (float) (salarioBase * 0.05);
+        } else if (categoriaEmpleado == CategoriaEmpleado.SEMI_SENIOR) {
+            bonificacion = (float) (salarioBase * 0.10);
+        } else if (categoriaEmpleado == CategoriaEmpleado.SENIOR) {
+            bonificacion = (float) (salarioBase * 0.15);
+        }
+        return bonificacion;
+    }
+    public  float calcularDescuentoSalud(){
+        float valorSalud = salarioBase * (descuentoSalud / 100);
+        return valorSalud;
+    }
+    public float calcularDescuentosPension(){
+        float valorPension = salarioBase * (descuentoPension / 100);
+        return valorPension;
+    }
+    public float calcularDescuentosTotales(){
+        float total = calcularDescuentosPension() + calcularDescuentoSalud();
+        return total;
+    }
+
     // Getters
     public String getNombre() {
         return nombre;
