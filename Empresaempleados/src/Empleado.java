@@ -10,6 +10,16 @@ public abstract class Empleado {
     private CategoriaEmpleado categoriaEmpleado;
     private List<ResumenPago> listResumenPagos;
 
+    /**
+     * Metodo constructor de la clase empleado
+     * @param nombre del empleado
+     * @param documento del empleado
+     * @param edad del empleado
+     * @param salarioBase del empleado
+     * @param descuentoSalud del empleado
+     * @param descuentoPension del empleado
+     * @param categoriaEmpleado del empleado
+     */
     public Empleado(String nombre, String documento, int edad, float salarioBase,float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado){
         this.nombre=nombre;
         this.documento= documento;
@@ -20,6 +30,11 @@ public abstract class Empleado {
         this.categoriaEmpleado =categoriaEmpleado;
     }
 
+    /**
+     * Metodo para mostrar la informacion de un empleado
+     * @param empleado datos del empleado
+     * @return respuesta
+     */
     public String mostrarInformacionEmpleado(Empleado empleado){
         String respuesta="";
         if(empleado==null){
@@ -29,10 +44,23 @@ public abstract class Empleado {
         }
         return respuesta;
     }
+
+    /**
+     * Metodo abstracto para calcular el salario bruto
+     * @return salario bruto
+     */
     public abstract float calcularSalarioBruto();
 
+    /**
+     * Metodo abstracto para calcular el salario neto
+     * @return calcular salario neto
+     */
     public abstract float calcularSalarioNeto();
 
+    /**
+     * Metodo para calcular la bonificación por categorio de los empleados
+     * @return bonificacion
+     */
     public float calcularBonificacionCategoria() {
         float bonificacion = 0;
         if (categoriaEmpleado == CategoriaEmpleado.JUNIOR) {
@@ -44,17 +72,47 @@ public abstract class Empleado {
         }
         return bonificacion;
     }
+
+    /**
+     * Metodo para calcular los decuentos de salud
+     * @return valorSalus
+     */
     public  float calcularDescuentoSalud(){
         float valorSalud = salarioBase * (descuentoSalud / 100);
         return valorSalud;
     }
+
+    /**
+     * Metodo para calcular los descuentos de pension
+     * @return valorPension
+     */
     public float calcularDescuentosPension(){
         float valorPension = salarioBase * (descuentoPension / 100);
         return valorPension;
     }
+
+    /**
+     * Metodo para calcular el descuento total del salario bruto de los empleados
+     * @return total
+     */
     public float calcularDescuentosTotales(){
         float total = calcularDescuentosPension() + calcularDescuentoSalud();
         return total;
+    }
+
+    /**
+     * Metodo record para el resumen de pago de los empleados
+     * @return resumen de pago
+     */
+    public ResumenPago generarResumenPago() {
+        return new ResumenPago(
+                this.documento,
+                this.nombre,
+                this.getClass().getSimpleName(),
+                this.calcularSalarioBruto(),
+                this.calcularDescuentosTotales(),
+                this.calcularSalarioNeto()
+        );
     }
 
     // Getters
