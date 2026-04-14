@@ -1,3 +1,3 @@
-public record ResumenPago(String nombre, String documento, String tipoEmpleado, float salarioBruto, float descuento, float salarioNeto) {
+public record ResumenPago(String nombre, String documento, String tipoEmpleado, float salarioBruto, float descuentos, float salarioNeto) {
 
 }
