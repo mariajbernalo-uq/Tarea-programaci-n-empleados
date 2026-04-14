@@ -14,11 +14,19 @@ public class EmpleadoVentas extends Empleado{
      * @param totalVentas del empleado de ventas
      * @param porcentajeComision del empleado de ventas
      */
-    public EmpleadoVentas(String nombre, String documento, int edad, float salarioBase,float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado,  float totalVentas, float porcentajeComision) throws Validaciones {
-        super(nombre,documento, edad, salarioBase, descuentoSalud, descuentoPension, categoriaEmpleado);
-        if (porcentajeComision < 0 || porcentajeComision > 100) {
-            throw new Validaciones("el porcentaje de comisión no puede ser menor que 0 ni mayor que 100");
+    public EmpleadoVentas(String nombre, String documento, int edad, float salarioBase,
+                          float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado,
+                          float totalVentas, float porcentajeComision) {
+        super(nombre, documento, edad, salarioBase, descuentoSalud, descuentoPension, categoriaEmpleado);
+
+        if (totalVentas < 0) {
+            throw new IllegalArgumentException("El total de ventas no puede ser negativo");
         }
+
+        if (porcentajeComision < 0 || porcentajeComision > 100) {
+            throw new IllegalArgumentException("El porcentaje de comisión debe estar entre 0 y 100");
+        }
+
         this.totalVentas = totalVentas;
         this.porcentajeComision = porcentajeComision;
     }
@@ -60,6 +68,9 @@ public class EmpleadoVentas extends Empleado{
     }
 
     public void setPorcentajeComision(float porcentajeComision) {
+        if (porcentajeComision < 0 || porcentajeComision > 100) {
+            throw new IllegalArgumentException("El porcentaje de comisión debe estar entre 0 y 100");
+        }
         this.porcentajeComision = porcentajeComision;
     }
 

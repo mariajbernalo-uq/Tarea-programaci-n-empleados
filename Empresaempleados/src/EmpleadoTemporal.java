@@ -14,14 +14,19 @@ public class EmpleadoTemporal extends Empleado {
      * @param diasTrabajados del empleado temporal
      * @param valorDia del empleado temporal
      */
-    public EmpleadoTemporal(String nombre, String documento, int edad, float salarioBase,float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado, int diasTrabajados, float valorDia) throws Validaciones {
-        super(nombre,documento, edad, salarioBase, descuentoSalud, descuentoPension, categoriaEmpleado);
+    public EmpleadoTemporal(String nombre, String documento, int edad, float salarioBase,
+                            float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado,
+                            int diasTrabajados, float valorDia) {
+        super(nombre, documento, edad, salarioBase, descuentoSalud, descuentoPension, categoriaEmpleado);
+
         if (diasTrabajados < 0) {
-            throw new Validaciones("los días trabajados no pueden ser negativos");
+            throw new IllegalArgumentException("Los días trabajados no pueden ser negativos");
         }
+
         if (valorDia < 0) {
-            throw new Validaciones("el valor por día no puede ser negativo");
+            throw new IllegalArgumentException("El valor por día no puede ser negativo");
         }
+
         this.diasTrabajados = diasTrabajados;
         this.valorDia = valorDia;
     }
@@ -50,6 +55,9 @@ public class EmpleadoTemporal extends Empleado {
 
     // Setters
     public void setDiasTrabajados(int diasTrabajados) {
+        if (diasTrabajados < 0) {
+            throw new IllegalArgumentException("Los días trabajados no pueden ser negativos");
+        }
         this.diasTrabajados = diasTrabajados;
     }
 

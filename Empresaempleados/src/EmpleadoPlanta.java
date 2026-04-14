@@ -18,14 +18,23 @@ public class EmpleadoPlanta extends Empleado{
      * @param valorHoraExtra del empleado planta
      * @param auxilioTransporte del empleado planta
      */
-    public EmpleadoPlanta(String nombre, String documento, int edad, float salarioBase,float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado, String cargo, int horasExtras, float valorHoraExtra, float auxilioTransporte) throws Validaciones {
-        super(nombre,documento, edad, salarioBase, descuentoSalud, descuentoPension, categoriaEmpleado);
-        if (horasExtras < 0){
-            throw new Validaciones("Las horas extra no pueden ser negativas.");
+    public EmpleadoPlanta(String nombre, String documento, int edad, float salarioBase,
+                          float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado,
+                          String cargo, int horasExtras, float valorHoraExtra, float auxilioTransporte) {
+        super(nombre, documento, edad, salarioBase, descuentoSalud, descuentoPension, categoriaEmpleado);
+
+        if (horasExtras < 0) {
+            throw new IllegalArgumentException("Las horas extra no pueden ser negativas");
         }
+
         if (valorHoraExtra < 0) {
-            throw new Validaciones("El valor de la hora extra no puede ser negativo.");
+            throw new IllegalArgumentException("El valor de la hora extra no puede ser negativo");
         }
+
+        if (auxilioTransporte < 0) {
+            throw new IllegalArgumentException("El auxilio de transporte no puede ser negativo");
+        }
+
         this.cargo = cargo;
         this.horasExtras = horasExtras;
         this.valorHoraExtra = valorHoraExtra;
@@ -67,10 +76,16 @@ public class EmpleadoPlanta extends Empleado{
     }
 
     public void setHorasExtras(int horasExtras) {
+        if (horasExtras < 0) {
+            throw new IllegalArgumentException("Las horas extra no pueden ser negativas");
+        }
         this.horasExtras = horasExtras;
     }
 
     public void setValorHoraExtra(float valorHoraExtra) {
+        if (valorHoraExtra < 0) {
+            throw new IllegalArgumentException("El valor de la hora extra no puede ser negativo");
+        }
         this.valorHoraExtra = valorHoraExtra;
     }
 

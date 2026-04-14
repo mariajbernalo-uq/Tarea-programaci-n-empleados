@@ -20,23 +20,28 @@ public abstract class Empleado {
      * @param descuentoPension del empleado
      * @param categoriaEmpleado del empleado
      */
-    public Empleado(String nombre, String documento, int edad, float salarioBase,float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado) throws Validaciones {
+    public Empleado(String nombre, String documento, int edad, float salarioBase,
+                    float descuentoSalud, float descuentoPension, CategoriaEmpleado categoriaEmpleado) {
+
         if (salarioBase < 0) {
-            throw new Validaciones("El salario base no puede ser negativo");
+            throw new IllegalArgumentException("El salario base no puede ser negativo");
         }
-        if (descuentoSalud < 0 || descuentoSalud > 100){
-            throw new Validaciones("El porcentaje en salud debe ser entre 0 y 100");
+
+        if (descuentoSalud < 0 || descuentoSalud > 100) {
+            throw new IllegalArgumentException("El descuento de salud debe estar entre 0 y 100");
         }
-        if (descuentoPension < 0 || descuentoPension > 110){
-            throw new Validaciones("El porcentaje de pensión debe ser entre 0 y 100");
+
+        if (descuentoPension < 0 || descuentoPension > 100) {
+            throw new IllegalArgumentException("El descuento de pensión debe estar entre 0 y 100");
         }
+
         this.nombre = nombre;
-        this.documento= documento;
-        this.edad=edad;
-        this.salarioBase=salarioBase;
-        this.descuentoSalud=descuentoSalud;
-        this.descuentoPension=descuentoPension;
-        this.categoriaEmpleado =categoriaEmpleado;
+        this.documento = documento;
+        this.edad = edad;
+        this.salarioBase = salarioBase;
+        this.descuentoSalud = descuentoSalud;
+        this.descuentoPension = descuentoPension;
+        this.categoriaEmpleado = categoriaEmpleado;
     }
 
     /**
@@ -165,14 +170,23 @@ public abstract class Empleado {
     }
 
     public void setSalarioBase(float salarioBase) {
+        if (salarioBase < 0) {
+            throw new IllegalArgumentException("El salario base no puede ser negativo");
+        }
         this.salarioBase = salarioBase;
     }
 
     public void setDescuentoSalud(float descuentoSalud) {
+        if (descuentoSalud < 0 || descuentoSalud > 100) {
+            throw new IllegalArgumentException("El descuento de salud debe estar entre 0 y 100");
+        }
         this.descuentoSalud = descuentoSalud;
     }
 
     public void setDescuentoPension(float descuentoPension) {
+        if (descuentoPension < 0 || descuentoPension > 100) {
+            throw new IllegalArgumentException("El descuento de pensión debe estar entre 0 y 100");
+        }
         this.descuentoPension = descuentoPension;
     }
 

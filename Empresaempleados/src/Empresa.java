@@ -170,6 +170,22 @@ public class Empresa{
         return nominaMensual;
     }
 
+    /**
+     * Método para mostrar el resumen de pagos
+     * @return lista
+     */
+    public String mostrarResumenPagos() {
+        if (listEmpleados.isEmpty()) {
+            return "No hay empleados registrados.";
+        }
+
+        String lista = "";
+        for (Empleado e : listEmpleados) {
+            lista += e.generarResumenPago() + "\n";
+        }
+        return lista;
+    }
+
     //Getters
     public String getNombre() {
         return nombre;
